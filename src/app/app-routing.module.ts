@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { ClientComponent } from './client/client.component';
+import { ProjectComponent } from './project/project.component';
 import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
   {
-    path: 'profile',
-    component: ProfileComponent,
+    path: 'client',
+    component: ClientComponent,
     canActivate: [
       MsalGuard
     ]
   },
   {
-    path: 'client',
-    component: ClientComponent,
+    path: 'project',
+    component: ProjectComponent,
     canActivate: [
       MsalGuard
     ]

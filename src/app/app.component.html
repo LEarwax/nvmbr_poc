@@ -5,7 +5,6 @@
 
   <a mat-button [routerLink]="['client']">Client</a>
   <a mat-button [routerLink]="['project']">Projects</a>
-  <a mat-button [routerLink]="['profile']">Profile</a>
 
   <button mat-raised-button *ngIf="!loggedIn" (click)="login()">Login</button>
   <button mat-raised-button *ngIf="loggedIn" (click)="logout()">Logout</button>
