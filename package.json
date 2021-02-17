@@ -24,13 +24,14 @@
     "@azure/msal-angular": "^2.0.0-alpha.0",
     "@azure/msal-browser": "^2.7.0",
     "core-js": "^3.8.0",
+    "primeng": "^11.2.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.1",
-    "@angular/cli": "~11.0.1",
+    "@angular/cli": "^11.2.0",
     "@angular/compiler-cli": "~11.0.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",

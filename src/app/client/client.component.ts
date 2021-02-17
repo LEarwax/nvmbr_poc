@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
+
+
+import { Client } from '../core/model/client.model';
 
 const coreAPIEndpoint = "https://ctlvr-nvmbr-api-appservice.azurewebsites.net";
 
@@ -10,6 +14,9 @@ const coreAPIEndpoint = "https://ctlvr-nvmbr-api-appservice.azurewebsites.net";
 })
 export class ClientComponent implements OnInit {
   testData: any;
+  model = new Client("Nick", "123 Paper St", "Nick CEO", "Some Notes");
+  
+  testDisplay: any;
 
   constructor(private http: HttpClient) { }
 
@@ -24,4 +31,18 @@ export class ClientComponent implements OnInit {
     )
   }
 
+  createClient() {
+    console.log("Model: ", this.model);
+    this.testDisplay = this.model;
+  }
+
+  onSubmit(clientForm: NgForm) {
+    console.log(clientForm.value);
+  }
+  
+
+  
+
 }
+
+// ClientBindingModel { "name": "", "address": "", "contactname": ""} 
