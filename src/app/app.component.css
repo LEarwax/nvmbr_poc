@@ -5,3 +5,9 @@
   a.title {
     color: white;
   }
+
+  /* TODO: make this a better class/id */
+  #menu {
+    margin-left: 10px;
+    margin-right: 10px;
+  }

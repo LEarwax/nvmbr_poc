@@ -3,11 +3,11 @@
 
   <div class="toolbar-spacer"></div>
 
-  <a mat-button [routerLink]="['client']">Client</a>
-  <a mat-button [routerLink]="['project']">Projects</a>
-
+  <p-menubar id="menu" [model]="items"></p-menubar>
+  
   <button mat-raised-button *ngIf="!loggedIn" (click)="login()">Login</button>
   <button mat-raised-button *ngIf="loggedIn" (click)="logout()">Logout</button>
+
 </mat-toolbar>
 <div class="container">
   <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->

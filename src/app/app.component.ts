@@ -4,6 +4,10 @@ import { EventMessage, EventType, InteractionType } from '@azure/msal-browser';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
+import { MenuItem } from 'primeng/api';
+import { PrimeNGConfig } from 'primeng/api';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,15 +17,57 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'NVMBR POC';
   isIframe = false;
   loggedIn = false;
+
+  items: MenuItem[] = [];
+
   private readonly _destroying$ = new Subject<void>();
 
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
-  ) {}
+    private msalBroadcastService: MsalBroadcastService,
+    private primengConfig: PrimeNGConfig
+  ) {
+    this.primengConfig.ripple = true;
+  }
 
   ngOnInit(): void {
+    
+
+    this.items = [
+      {
+          label: 'Projects',
+          items: [
+            {
+              label: 'Create a new project', 
+              icon: 'pi pi-fw pi-plus'
+            },
+            {
+              label: 'Import projects'
+            },
+            {
+              label: 'Recently view projects'
+            }
+          ]
+      },
+      {
+          label: 'Clients',
+          icon: 'pi pi-fw pi-pencil',
+          items: [
+            {
+              label: 'Create a new client', 
+              icon: 'pi pi-fw pi-plus'
+            },
+            {
+              label: 'Import clients'
+            },
+            {
+              label: 'Recently viewed clients'
+            }
+          ]
+      }
+  ];
+
     this.isIframe = window !== window.parent && !window.opener;
 
     this.checkAccount();

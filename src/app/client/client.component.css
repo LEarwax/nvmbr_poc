@@ -1,3 +1,9 @@
-div.form-group {
-    width: 25%;
+div#form-container {
+    width: 50%;
+    display: inline-block;
+}
+
+#display-container {
+    width: 50%;
+    display: inline-block;
 }

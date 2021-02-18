@@ -5,6 +5,11 @@ import { NgForm } from '@angular/forms';
 
 import { Client } from '../core/model/client.model';
 
+const CLIENT_STATUS = {
+  active: "active",
+  inactive: "inactive"
+}
+
 const coreAPIEndpoint = "https://ctlvr-nvmbr-api-appservice.azurewebsites.net";
 
 @Component({
@@ -14,13 +19,22 @@ const coreAPIEndpoint = "https://ctlvr-nvmbr-api-appservice.azurewebsites.net";
 })
 export class ClientComponent implements OnInit {
   testData: any;
-  model = new Client("Nick", "123 Paper St", "Nick CEO", "Some Notes");
   
-  testDisplay: any;
+  clientModel: Client = new Client("", "", "", "", "", CLIENT_STATUS.inactive);
 
-  constructor(private http: HttpClient) { }
+  // clients: Client[] = [];
+  clients: string[] = ["client1", "client2", "client3", "client4"];
 
-  ngOnInit(): void { }
+  list: String[];
+  selected: string = "";
+
+  constructor(private http: HttpClient) { 
+    this.list = ["1", "2", "3"];
+  }
+
+  ngOnInit(): void { 
+    this.getTestData();
+  }
 
   getTestData() {
     this.http.get(`${coreAPIEndpoint}/api/noauthtest/test`).subscribe(
@@ -30,18 +44,30 @@ export class ClientComponent implements OnInit {
       }
     )
   }
-
-  createClient() {
-    console.log("Model: ", this.model);
-    this.testDisplay = this.model;
-  }
-
   onSubmit(clientForm: NgForm) {
     console.log(clientForm.value);
-  }
-  
+    // this.clientModel = clientForm.value;
 
-  
+    // let client = new Client(
+    //   this.clientModel.name,
+    //   this.clientModel.address,
+    //   this.clientModel.contactName,
+    //   this.clientModel.notes,
+    //   this.clientModel.history,
+    //   this.clientModel.status
+    // );
+
+    // this.clients.push(client);
+
+    // try {
+    //   this.http.post(`${coreAPIEndpoint}/api/clients`, client)
+    //       .subscribe(result => {
+    //         console.log("Results: ", result);
+    //       });
+    // } catch (error) {
+      
+    // }
+  }
 
 }
 

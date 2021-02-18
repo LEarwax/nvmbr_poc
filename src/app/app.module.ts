@@ -17,6 +17,10 @@ import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfig
 import { ClientComponent } from './client/client.component';
 import { ProjectComponent } from './project/project.component';
 
+import { ButtonModule } from 'primeng/button';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuItem } from 'primeng/api'
+
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
 export function MSALInstanceFactory(): IPublicClientApplication {
@@ -52,7 +56,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     AppComponent,
     HomeComponent,
     ClientComponent,
-    ProjectComponent
+    ProjectComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,10 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MatListModule,
     HttpClientModule,
     MsalModule,
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    MenubarModule,
+    
   ],
   providers: [
     {
