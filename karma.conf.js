@@ -16,7 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular11-sample-app'),
+      dir: require('path').join(__dirname, './coverage/nvmbr-client-poc'),
       subdir: '.',
       reporters: [
         { type: 'html' },
