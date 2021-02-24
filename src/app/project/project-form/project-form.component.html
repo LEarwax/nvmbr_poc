@@ -1,0 +1,164 @@
+    <form  (ngSubmit)="onSubmit()" #projectForm="ngForm">
+        <p-fieldset legend="Details">
+            
+            <div class="p-grid">
+                
+                <!-- Left Half of form -->
+                <div class="p-col-6">
+                    
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="client">Client: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <p-cascadeSelect [(ngModel)]="selectedClient" 
+                                             [options]="clients" 
+                                             optionLabel="cname" 
+                                             optionGroupLabel="name" 
+                                             [optionGroupChildren]="['states', 'cities']" 
+                                             [style]="{'minWidth': '14rem'}"
+                                             id="client"
+                                             (onChange)="handleClientSelect($event.value.cname)">
+                            </p-cascadeSelect>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="name">Name: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="name" [(ngModel)]="name" type="text" pInputText />
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="project-manager">Project Manager: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <p-cascadeSelect [(ngModel)]="selectedProject" 
+                                             [options]="projectManagers" 
+                                             optionLabel="cname" 
+                                             optionGroupLabel="name" 
+                                             [optionGroupChildren]="['states', 'cities']" 
+                                             [style]="{'minWidth': '14rem'}"
+                                             id="project-manager"
+                                             (onChange)="handleProjectSelect($event.value.cname)">
+                            </p-cascadeSelect>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="status">Status: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <p-selectButton [options]="statusOptions" 
+                                            [(ngModel)]="value1" 
+                                            optionLabel="label" 
+                                            optionValue="value"
+                                            id="status">
+                            </p-selectButton>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="billable">Billable: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <p-selectButton id="billable" 
+                                            [options]="billableOptions" 
+                                            [(ngModel)]="billableValue" 
+                                            optionLabel="label" 
+                                            optionValue="value">
+                            </p-selectButton>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Left Half of form -->
+
+                <!-- Right Half of Form -->
+                <div class="p-col-6">
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label for="start-date">Start Date: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <p-calendar inputId="start-date" [(ngModel)]="date1"></p-calendar>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label for="end-date">End Date: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <p-calendar inputId="end-date" [(ngModel)]="date1"></p-calendar>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label for="budget">Budget: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="budget" type="text" pInputText />
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label for="actual">Actual: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="actual" type="text" pInputText />
+                        </div>
+                    </div>
+                    
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label for="alert-when">Alert When: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="alert-when" type="text" pInputText />
+                            <label for="alert-when"> % of budget ($0.00) is reached.</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Half of Form -->
+
+            </div>
+
+        </p-fieldset>
+
+        <div class="p-grid">
+            <div class="p-col-6">
+                <p-fieldset legend="Description: ">
+                    <textarea rows="5" cols="70" pInputTextarea></textarea>
+                </p-fieldset>
+            </div>
+            <div class="p-col-2">
+                
+            </div>
+            <div id="submit-btn" class="p-col-4">
+                <p-button label="Save Client"></p-button>
+            </div>
+        </div>  
+
+        <div>
+            Selected Client: {{ selectedClient }}
+        </div>
+        <div>
+            Selected Project: {{ selectedProject }}
+        </div>
+        <div>
+            Name: {{ name }}
+        </div>
+        
+    </form>
+
+

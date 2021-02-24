@@ -17,9 +17,20 @@ import { MsalGuard, MsalInterceptor, MsalBroadcastService, MsalInterceptorConfig
 import { ClientComponent } from './client/client.component';
 import { ProjectComponent } from './project/project.component';
 
+import { ClientFormComponent } from './client/client-form/client-form.component';
+import { ProjectFormComponent } from './project/project-form/project-form.component'
+
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
-import { MenuItem } from 'primeng/api'
+import {CheckboxModule} from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton'
+import {CascadeSelectModule} from 'primeng/cascadeselect';
+import {FieldsetModule} from 'primeng/fieldset';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {InputTextModule} from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {MegaMenuModule} from 'primeng/megamenu';
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
@@ -57,6 +68,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     HomeComponent,
     ClientComponent,
     ProjectComponent,
+    ClientFormComponent,
+    ProjectFormComponent
     
   ],
   imports: [
@@ -71,7 +84,15 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     FormsModule,
     ButtonModule,
     MenubarModule,
-    
+    CheckboxModule,
+    RadioButtonModule,
+    CascadeSelectModule,
+    FieldsetModule,
+    SelectButtonModule,
+    InputTextModule,
+    CalendarModule,
+    InputTextareaModule,
+    MegaMenuModule
   ],
   providers: [
     {

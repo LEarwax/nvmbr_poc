@@ -14,7 +14,6 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'NVMBR POC';
   isIframe = false;
   loggedIn = false;
 
@@ -40,6 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
           items: [
             {
               label: 'Create a new project', 
+              routerLink: ['project/projectForm'],
               icon: 'pi pi-fw pi-plus'
             },
             {

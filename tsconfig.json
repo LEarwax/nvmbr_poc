@@ -13,6 +13,7 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "importHelpers": true,
     "target": "es5",
     "module": "es2020",
@@ -24,6 +25,6 @@
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": false
   }
 }

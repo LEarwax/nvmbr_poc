@@ -1,5 +1,3 @@
-
-
 export class Client {
     constructor(
         public name: string,
@@ -8,5 +6,5 @@ export class Client {
         public notes?: string,
         public history?: string,
         public status?: string
-        ) { }
+    ) { }
 }

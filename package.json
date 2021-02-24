@@ -25,6 +25,7 @@
     "@azure/msal-browser": "^2.7.0",
     "core-js": "^3.8.0",
     "font-awesome": "^4.7.0",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.2.2",
     "rxjs": "~6.6.0",
