@@ -18,9 +18,9 @@ const routes: Routes = [
   {
     path: 'project',
     component: ProjectComponent,
-    // canActivate: [
-    //   MsalGuard
-    // ]
+    canActivate: [
+      MsalGuard
+    ]
   },
   //TODO: make this a child route
   {
