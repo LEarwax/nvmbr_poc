@@ -1,222 +1,103 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../../core/model/project.model';
 import { HttpClient } from '@angular/common/http';
-
-
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-project-form',
+  selector: 'project-form',
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.css']
 })
 export class ProjectFormComponent implements OnInit {
 
+@Output() newProjectEvent = new EventEmitter<Project>();
+
   projectModel: Project = new Project("", "", false, new Date(), 0, 0, 0, 0); 
 
-  selectedClient: string = "";
 
+  // TODO: Fix these problems papered over with @ts-ignore i.e. the proper way to initialize
+  
+  // Client
   // @ts-ignore
   clients: any[];
   // @ts-ignore
-  projectManagers: any[];
+  // TODO: Get two-way binding to work on dropdown select
+  selectedClient: string;
+
+  // Name
+  name: string = "";
+
+  // Project Manager
   // @ts-ignore
-  selectedClient: any;
-  selectedProject: any;
-  billableOptions: any[] = [];
-  billableValue: string = "off"; 
+  projectManagers: any[];
+  selectedProjectManager: any;
+
+  // @ts-ignore
+  binaryOptions: any[];
+  selectedStatusOption: string = "no";
+  selectedBillableOption: string = "no";
+  
   // @ts-ignore
   startDate: Date;
   // @ts-ignore
   endDate: Date;
-  statusOptions: any[] = [];
-  statusValue: string = "off"; 
+  
   // @ts-ignore
   value1: string;
   // @ts-ignore
   date1: Date;
-  // @ts-ignore
-  name: string;
   
+  
+  // @ts-ignore
+  countries: any[];
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
       
-    // Test Data
     this.clients = [
-      {
-          name: 'Client1',
-          code: 'AU',
-          states: [
-              {
-                  name: 'New South Wales',
-                  cities: [
-                      {cname: 'Sydney', code: 'A-SY'},
-                      {cname: 'Newcastle', code: 'A-NE'},
-                      {cname: 'Wollongong', code: 'A-WO'}
-                  ]
-              },
-              {
-                  name: 'Queensland',
-                  cities: [
-                      {cname: 'Brisbane', code: 'A-BR'},
-                      {cname: 'Townsville', code: 'A-TO'}
-                  ]
-              },
-              
-          ]
-      },
-      {
-          name: 'Client2', 
-          code: 'CA',
-          states: [
-              {
-                  name: 'Quebec',
-                  cities: [
-                      {cname: 'Montreal', code: 'C-MO'},
-                      {cname: 'Quebec City', code: 'C-QU'}
-                  ]
-              },
-              {
-                  name: 'Ontario',
-                  cities: [
-                      {cname: 'Ottawa', code: 'C-OT'},
-                      {cname: 'Toronto', code: 'C-TO'}
-                  ]
-              },
-              
-          ]
-      },
-      {
-          name: 'Client3',
-          code: 'US',
-          states: [
-              {
-                  name: 'California',
-                  cities: [
-                      {cname: 'Los Angeles', code: 'US-LA'},
-                      {cname: 'San Diego', code: 'US-SD'},
-                      {cname: 'San Francisco', code: 'US-SF'}
-                  ]
-              },
-              {
-                  name: 'Florida',
-                  cities: [
-                      {cname: 'Jacksonville', code: 'US-JA'},
-                      {cname: 'Miami', code: 'US-MI'},
-                      {cname: 'Tampa', code: 'US-TA'},
-                      {cname: 'Orlando', code: 'US-OR'}
-                  ]
-              },
-              {
-                  name: 'Texas',
-                  cities: [
-                      {cname: 'Austin', code: 'US-AU'},
-                      {cname: 'Dallas', code: 'US-DA'},
-                      {cname: 'Houston', code: 'US-HO'}
-                  ]
-              }
-          ]
-      }];
-      
+        {label: 'Australia', value: 'Australia'},
+        {label: 'Brazil', value: 'Brazil'},
+        {label: 'China', value: 'China'},
+        {label: 'Egypt', value: 'Egypt'},
+        {label: 'France', value: 'France'},
+        {label: 'Germany', value: 'Germany'},
+        {label: 'India', value: 'India'},
+        {label: 'Japan', value: 'Japan'},
+        {label: 'Spain', value: 'Spain'},
+        {label: 'United States', value: 'United States'}
+    ];
+
     // Test data
     this.projectManagers = [
-        {
-            name: 'Project1',
-            code: 'AU',
-            states: [
-                {
-                    name: 'New South Wales',
-                    cities: [
-                        {cname: 'Sydney', code: 'A-SY'},
-                        {cname: 'Newcastle', code: 'A-NE'},
-                        {cname: 'Wollongong', code: 'A-WO'}
-                    ]
-                },
-                {
-                    name: 'Queensland',
-                    cities: [
-                        {cname: 'Brisbane', code: 'A-BR'},
-                        {cname: 'Townsville', code: 'A-TO'}
-                    ]
-                },
-                
-            ]
-        },
-        {
-            name: 'Project2', 
-            code: 'CA',
-            states: [
-                {
-                    name: 'Quebec',
-                    cities: [
-                        {cname: 'Montreal', code: 'C-MO'},
-                        {cname: 'Quebec City', code: 'C-QU'}
-                    ]
-                },
-                {
-                    name: 'Ontario',
-                    cities: [
-                        {cname: 'Ottawa', code: 'C-OT'},
-                        {cname: 'Toronto', code: 'C-TO'}
-                    ]
-                },
-                
-            ]
-        },
-        {
-            name: 'Project3',
-            code: 'US',
-            states: [
-                {
-                    name: 'California',
-                    cities: [
-                        {cname: 'Los Angeles', code: 'US-LA'},
-                        {cname: 'San Diego', code: 'US-SD'},
-                        {cname: 'San Francisco', code: 'US-SF'}
-                    ]
-                },
-                {
-                    name: 'Florida',
-                    cities: [
-                        {cname: 'Jacksonville', code: 'US-JA'},
-                        {cname: 'Miami', code: 'US-MI'},
-                        {cname: 'Tampa', code: 'US-TA'},
-                        {cname: 'Orlando', code: 'US-OR'}
-                    ]
-                },
-                {
-                    name: 'Texas',
-                    cities: [
-                        {cname: 'Austin', code: 'US-AU'},
-                        {cname: 'Dallas', code: 'US-DA'},
-                        {cname: 'Houston', code: 'US-HO'}
-                    ]
-                }
-            ]
-      }];
+        {label: 'Australia', value: 'Australia'},
+        {label: 'Brazil', value: 'Brazil'},
+        {label: 'China', value: 'China'},
+        {label: 'Egypt', value: 'Egypt'},
+        {label: 'France', value: 'France'},
+        {label: 'Germany', value: 'Germany'},
+        {label: 'India', value: 'India'},
+        {label: 'Japan', value: 'Japan'},
+        {label: 'Spain', value: 'Spain'},
+        {label: 'United States', value: 'United States'}
+    ];
+
+    
+    this.binaryOptions = [{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}];
+    
+  }
+
+
+  // TODO: Figure out how to get two-way binding to work with dropdown
+  handleClientSelect(event: any) {
+    this.projectModel.client = event.value
+  }
+
+
   
-      
-    
-
-
-    
-    this.billableOptions = [{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}];
-    this.statusOptions = [{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}];
-  }
-
-  handleClientSelect(client: string) {
-    this.selectedClient = client;
-  }
-
-  handleProjectSelect(client: string) {
-    this.selectedProject = client;
-  }
-
-    // this.countries = 
 
   onSubmit() {
-    try {
-      
+    
       let project = new Project(
         this.projectModel.client,
         this.projectModel.name,
@@ -235,9 +116,7 @@ export class ProjectFormComponent implements OnInit {
       let check = localStorage.getItem(project.name);
       console.log("Project: ", check);
 
-    } catch (error) {
-      
-    }
+    
   }
 
 }

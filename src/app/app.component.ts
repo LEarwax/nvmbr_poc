@@ -39,7 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
           items: [
             {
               label: 'Create a new project', 
-              routerLink: ['project/projectForm'],
+              routerLink: ['/project/form'],
+              routerLinkActiveOptions: { exact: true },
               icon: 'pi pi-fw pi-plus'
             },
             {

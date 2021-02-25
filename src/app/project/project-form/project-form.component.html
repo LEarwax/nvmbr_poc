@@ -11,15 +11,13 @@
                             <label id="client">Client: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-cascadeSelect [(ngModel)]="selectedClient" 
-                                             [options]="clients" 
-                                             optionLabel="cname" 
-                                             optionGroupLabel="name" 
-                                             [optionGroupChildren]="['states', 'cities']" 
-                                             [style]="{'minWidth': '14rem'}"
-                                             id="client"
-                                             (onChange)="handleClientSelect($event.value.cname)">
-                            </p-cascadeSelect>
+                            <p-dropdown [options]="clients" 
+                                        [filter]="true" 
+                                        filterBy="name" 
+                                        name="client"
+                                        [(ngModel)]="selectedClient"
+                                        placeholder="Select a Client">
+                            </p-dropdown>
                         </div>
                     </div>
 
@@ -28,7 +26,11 @@
                             <label id="name">Name: </label>
                         </div>
                         <div class="p-col-9">
-                            <input id="name" [(ngModel)]="name" type="text" pInputText />
+                            <input id="name" 
+                                   [(ngModel)]="name" 
+                                   type="text" 
+                                   name="name"
+                                   pInputText/>
                         </div>
                     </div>
 
@@ -37,15 +39,13 @@
                             <label id="project-manager">Project Manager: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-cascadeSelect [(ngModel)]="selectedProject" 
-                                             [options]="projectManagers" 
-                                             optionLabel="cname" 
-                                             optionGroupLabel="name" 
-                                             [optionGroupChildren]="['states', 'cities']" 
-                                             [style]="{'minWidth': '14rem'}"
-                                             id="project-manager"
-                                             (onChange)="handleProjectSelect($event.value.cname)">
-                            </p-cascadeSelect>
+                            <p-dropdown [options]="projectManagers" 
+                                        [filter]="true" 
+                                        filterBy="name" 
+                                        name="projectManager"
+                                        [(ngModel)]="selectedProjectManager"
+                                        placeholder="Select a Project Manager">
+                            </p-dropdown>
                         </div>
                     </div>
 
@@ -54,8 +54,9 @@
                             <label id="status">Status: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-selectButton [options]="statusOptions" 
-                                            [(ngModel)]="value1" 
+                            <p-selectButton [options]="binaryOptions" 
+                                            [(ngModel)]="selectedStatusOption" 
+                                            name="status"
                                             optionLabel="label" 
                                             optionValue="value"
                                             id="status">
@@ -69,8 +70,9 @@
                         </div>
                         <div class="p-col-9">
                             <p-selectButton id="billable" 
-                                            [options]="billableOptions" 
-                                            [(ngModel)]="billableValue" 
+                                            [options]="binaryOptions" 
+                                            [(ngModel)]="selectedBillableOption" 
+                                            name="billable"
                                             optionLabel="label" 
                                             optionValue="value">
                             </p-selectButton>
@@ -88,7 +90,7 @@
                             <label for="start-date">Start Date: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-calendar inputId="start-date" [(ngModel)]="date1"></p-calendar>
+                            <p-calendar name="startDateSelect" inputId="start-date" [(ngModel)]="date1"></p-calendar>
                         </div>
                     </div>
 
@@ -97,7 +99,7 @@
                             <label for="end-date">End Date: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-calendar inputId="end-date" [(ngModel)]="date1"></p-calendar>
+                            <p-calendar name="endDateSelect" inputId="end-date" [(ngModel)]="date1"></p-calendar>
                         </div>
                     </div>
 
@@ -106,7 +108,7 @@
                             <label for="budget">Budget: </label>
                         </div>
                         <div class="p-col-9">
-                            <input id="budget" type="text" pInputText />
+                            <input id="budget" type="text" name= pInputText />
                         </div>
                     </div>
 
@@ -153,10 +155,16 @@
             Selected Client: {{ selectedClient }}
         </div>
         <div>
-            Selected Project: {{ selectedProject }}
+            Name: {{ name }}
         </div>
         <div>
-            Name: {{ name }}
+            Selected Project: {{ selectedProjectManager }}
+        </div>
+        <div>
+            Status: {{ selectedStatusOption }}
+        </div>
+        <div>
+            Billable: {{ selectedBillableOption }}
         </div>
         
     </form>

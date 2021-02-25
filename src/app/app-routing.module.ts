@@ -9,6 +9,10 @@ import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomeComponent
+  },
+  {
     path: 'client',
     component: ClientComponent,
     canActivate: [
@@ -20,25 +24,37 @@ const routes: Routes = [
     component: ProjectComponent,
     canActivate: [
       MsalGuard
+    ],
+    children: [
+      {
+        path: 'form',
+        component: ProjectFormComponent,
+        canActivate: [
+              MsalGuard
+            ]
+        }
     ]
   },
   //TODO: make this a child route
-  {
-    path: 'project/projectForm',
-    component: ProjectFormComponent,
-    canActivate: [
-      MsalGuard
-    ]
-  },
+  // {
+  //   path: 'project/projectForm',
+  //   component: ProjectFormComponent,
+  //   canActivate: [
+  //     MsalGuard
+  //   ]
+  // },
   {
     // Needed for hash routing
     path: 'code',
     component: HomeComponent
   },
+  // TODO: Fallback route, either keep home component or provide another component (PageNotFound, etc)
   {
-    path: '',
-    component: HomeComponent
+    path: "**",
+    redirectTo: '/',
+    pathMatch: 'full'
   }
+  
 ];
 
 const isIframe = window !== window.parent && !window.opener;

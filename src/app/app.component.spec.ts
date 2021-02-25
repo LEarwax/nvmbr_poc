@@ -7,7 +7,7 @@ import { IPublicClientApplication, PublicClientApplication } from '@azure/msal-b
 function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
-      clientId: '6226576d-37e9-49eb-b201-ec1eeb0029b6',
+      clientId: 'c6e99c7d-8da1-4c5f-9ae6-37c49d3d1f2d',
       redirectUri: 'http://localhost:4200'
     }
   });

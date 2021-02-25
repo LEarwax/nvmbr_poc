@@ -24,13 +24,14 @@ import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import {CheckboxModule} from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton'
-import {CascadeSelectModule} from 'primeng/cascadeselect';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
 import {FieldsetModule} from 'primeng/fieldset';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {InputTextModule} from 'primeng/inputtext';
 import {CalendarModule} from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {MegaMenuModule} from 'primeng/megamenu';
+import { DropdownModule } from 'primeng/dropdown';
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
@@ -39,7 +40,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     auth: {
       clientId: 'c6e99c7d-8da1-4c5f-9ae6-37c49d3d1f2d',
       authority: 'https://login.microsoftonline.com/f7dc11ce-a7ef-4a98-81b2-d57f0bd15222',
-      redirectUri: 'https://gray-mud-07eac9a1e.azurestaticapps.net'
+      redirectUri: 'http://localhost:4200/'
     },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
@@ -92,7 +93,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     InputTextModule,
     CalendarModule,
     InputTextareaModule,
-    MegaMenuModule
+    MegaMenuModule,
+    DropdownModule
   ],
   providers: [
     {
