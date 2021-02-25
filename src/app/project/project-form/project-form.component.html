@@ -90,7 +90,7 @@
                             <label for="start-date">Start Date: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-calendar name="startDateSelect" inputId="start-date" [(ngModel)]="date1"></p-calendar>
+                            <p-calendar name="startDate" inputId="start-date" [(ngModel)]="selectedStartDate"></p-calendar>
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@
                             <label for="end-date">End Date: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-calendar name="endDateSelect" inputId="end-date" [(ngModel)]="date1"></p-calendar>
+                            <p-calendar name="endDate" inputId="end-date" [(ngModel)]="selectedEndDate"></p-calendar>
                         </div>
                     </div>
 
@@ -165,6 +165,12 @@
         </div>
         <div>
             Billable: {{ selectedBillableOption }}
+        </div>
+        <div>
+            Start Date: {{ selectedStartDate }}
+        </div>
+        <div>
+            End Date: {{ selectedEndDate }}
         </div>
         
     </form>

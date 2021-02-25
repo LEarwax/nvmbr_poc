@@ -37,10 +37,11 @@ export class ProjectFormComponent implements OnInit {
   selectedStatusOption: string = "no";
   selectedBillableOption: string = "no";
   
+  // Dates
   // @ts-ignore
-  startDate: Date;
+  selectedStartDate: Date;
   // @ts-ignore
-  endDate: Date;
+  selectedEndDate: Date;
   
   // @ts-ignore
   value1: string;
