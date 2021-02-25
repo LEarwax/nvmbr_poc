@@ -108,7 +108,7 @@
                             <label for="budget">Budget: </label>
                         </div>
                         <div class="p-col-9">
-                            <input id="budget" type="text" name= pInputText />
+                            <input id="budget" type="text" [(ngModel)]="budget" name="budget" pInputText />
                         </div>
                     </div>
 
@@ -117,7 +117,7 @@
                             <label for="actual">Actual: </label>
                         </div>
                         <div class="p-col-9">
-                            <input id="actual" type="text" pInputText />
+                            <input id="actual" type="text" [(ngModel)]="actual" name="actual" pInputText />
                         </div>
                     </div>
                     
@@ -126,7 +126,7 @@
                             <label for="alert-when">Alert When: </label>
                         </div>
                         <div class="p-col-9">
-                            <input id="alert-when" type="text" pInputText />
+                            <input id="alert-when" type="text" [(ngModel)]="alertPercentage" name="alert" pInputText/>
                             <label for="alert-when"> % of budget ($0.00) is reached.</label>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
         <div class="p-grid">
             <div class="p-col-6">
                 <p-fieldset legend="Description: ">
-                    <textarea rows="5" cols="70" pInputTextarea></textarea>
+                    <textarea rows="5" cols="70" [(ngModel)]="description" name="description" pInputTextarea></textarea>
                 </p-fieldset>
             </div>
             <div class="p-col-2">
@@ -172,7 +172,18 @@
         <div>
             End Date: {{ selectedEndDate }}
         </div>
-        
+        <div>
+            Budget: {{ budget }}
+        </div>
+        <div>
+            Actual: {{ actual }}
+        </div>
+        <div>
+            Alert %: {{ alertPercentage }}
+        </div>
+        <div>
+            Description: {{ description }}
+        </div>
     </form>
 
 

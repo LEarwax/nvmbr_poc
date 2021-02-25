@@ -43,14 +43,13 @@ export class ProjectFormComponent implements OnInit {
   // @ts-ignore
   selectedEndDate: Date;
   
-  // @ts-ignore
-  value1: string;
-  // @ts-ignore
-  date1: Date;
+  budget: number = 0;
+  actual: number = 0;
+  alertPercentage: number = 0;
+  description: string = "";
   
   
   // @ts-ignore
-  countries: any[];
 
   constructor(private http: HttpClient) { }
 
@@ -90,11 +89,6 @@ export class ProjectFormComponent implements OnInit {
 
 
   // TODO: Figure out how to get two-way binding to work with dropdown
-  handleClientSelect(event: any) {
-    this.projectModel.client = event.value
-  }
-
-
   
 
   onSubmit() {
