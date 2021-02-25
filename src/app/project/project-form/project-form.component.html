@@ -13,7 +13,7 @@
                         <div class="p-col-9">
                             <p-dropdown [options]="clients" 
                                         [filter]="true" 
-                                        filterBy="name" 
+                                        filterBy="label" 
                                         name="client"
                                         [(ngModel)]="selectedClient"
                                         placeholder="Select a Client">
@@ -41,7 +41,7 @@
                         <div class="p-col-9">
                             <p-dropdown [options]="projectManagers" 
                                         [filter]="true" 
-                                        filterBy="name" 
+                                        filterBy="label" 
                                         name="projectManager"
                                         [(ngModel)]="selectedProjectManager"
                                         placeholder="Select a Project Manager">

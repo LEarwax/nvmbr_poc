@@ -10,10 +10,7 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class ProjectFormComponent implements OnInit {
 
-@Output() newProjectEvent = new EventEmitter<Project>();
-
-  projectModel: Project = new Project("", "", false, new Date(), 0, 0, 0, 0); 
-
+@Output() projectEvent = new EventEmitter<Project>();
 
   // TODO: Fix these problems papered over with @ts-ignore i.e. the proper way to initialize
   
@@ -34,8 +31,8 @@ export class ProjectFormComponent implements OnInit {
 
   // @ts-ignore
   binaryOptions: any[];
-  selectedStatusOption: string = "no";
-  selectedBillableOption: string = "no";
+  selectedStatusOption: boolean = false;
+  selectedBillableOption: boolean = false;
   
   // Dates
   // @ts-ignore
@@ -83,7 +80,7 @@ export class ProjectFormComponent implements OnInit {
     ];
 
     
-    this.binaryOptions = [{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}];
+    this.binaryOptions = [{label: 'Yes', value: true}, {label: 'No', value: false}];
     
   }
 
@@ -92,26 +89,21 @@ export class ProjectFormComponent implements OnInit {
   
 
   onSubmit() {
-    
-      let project = new Project(
-        this.projectModel.client,
-        this.projectModel.name,
-        this.projectModel.billable,
-        this.projectModel.startDate,
-        this.projectModel.status,
-        this.projectModel.budgetAmount,
-        this.projectModel.actualAmount,
-        this.projectModel.budgetThresholdPercentage,
-        this.projectModel.description,
-        this.projectModel.endDate,
-        this.projectModel.projectManger
-      );
 
-      localStorage.set(project.name, project);
-      let check = localStorage.getItem(project.name);
-      console.log("Project: ", check);
-
+    let project: Project = {
+        client: this.selectedClient,
+        name: this.name,
+        projectManager: this.selectedProjectManager,
+        status: this.selectedStatusOption,
+        billable: this.selectedBillableOption,
+        startDate: this.selectedStartDate,
+        endDate: this.selectedEndDate,
+        budget: this.budget,
+        actual: this.actual,
+        alertPercentage: this.alertPercentage
+    };
     
+    this.projectEvent.emit(project);
   }
 
 }

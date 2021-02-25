@@ -1,16 +1,12 @@
-export class Project {
-    constructor(
-        public client: string,
-        public name: string,
-        public billable: boolean,
-        public startDate: Date,
-        // TODO: Status is a bool, make a type for it?
-        public status: number,
-        public budgetAmount: number,
-        public actualAmount: number,
-        public budgetThresholdPercentage: number,
-        public description?: string, 
-        public endDate?: Date,
-        public projectManger?: String,
-    ) { }
+export interface Project {
+    client: string;
+    name: string;
+    projectManager: string;
+    status: boolean;
+    billable: boolean;
+    startDate: Date;
+    endDate: Date;
+    budget: number;
+    actual: number;
+    alertPercentage: number;
 }
