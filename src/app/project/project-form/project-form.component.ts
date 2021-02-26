@@ -85,12 +85,7 @@ export class ProjectFormComponent implements OnInit {
     
   }
 
-
-  // TODO: Figure out how to get two-way binding to work with dropdown
-  
-
   handleSubmit() {
-
     let project: Project = {
         client: this.selectedClient,
         name: this.name,

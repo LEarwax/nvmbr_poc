@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
+import { ProjectService } from './project.service';
 import { Project } from '../core/model/project.model';
 
 const coreAPIEndpoint = "https://ctlvr-nvmbr-api-appservice.azurewebsites.net";
@@ -28,9 +29,21 @@ export class ProjectComponent implements OnInit {
   }
   weatherData: WeatherForecast[] = [];
 
-  constructor(private http: HttpClient, public router: ActivatedRoute) { }
+  constructor(
+    private http: HttpClient, 
+    private router: ActivatedRoute,
+    private projectService: ProjectService
+  ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getTestData()
+  }
+
+  getTestData(): void {
+    this.projectService.getTestData().subscribe(data => {
+      console.log("Test data: ", data);
+    });
+  }
 
   getTestWeatherData() {
 
