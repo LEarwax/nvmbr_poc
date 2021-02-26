@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from '../../core/model/project.model';
 import { HttpClient } from '@angular/common/http';
 import { Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'project-form',
@@ -88,7 +89,7 @@ export class ProjectFormComponent implements OnInit {
   // TODO: Figure out how to get two-way binding to work with dropdown
   
 
-  onSubmit() {
+  handleSubmit() {
 
     let project: Project = {
         client: this.selectedClient,
@@ -103,6 +104,8 @@ export class ProjectFormComponent implements OnInit {
         alertPercentage: this.alertPercentage
     };
     
+    console.log("Submitted Project: ", project);
+
     this.projectEvent.emit(project);
   }
 

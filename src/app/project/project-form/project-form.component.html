@@ -1,4 +1,5 @@
-    <form  (ngSubmit)="onSubmit()" #projectForm="ngForm">
+    <!-- TODO: Use ngForm properly with (ngSubmit) -->
+    <form #project="ngForm">
         <p-fieldset legend="Details">
             
             <div class="p-grid">
@@ -147,9 +148,10 @@
                 
             </div>
             <div id="submit-btn" class="p-col-4">
-                <p-button label="Save Client"></p-button>
+                <p-button (click)="handleSubmit()" label="Save Client"></p-button>
             </div>
         </div>  
+    </form>
 
         <div>
             Selected Client: {{ selectedClient }}
@@ -184,6 +186,6 @@
         <div>
             Description: {{ description }}
         </div>
-    </form>
+    
 
 

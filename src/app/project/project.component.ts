@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
+import { Project } from '../core/model/project.model';
+
 const coreAPIEndpoint = "https://ctlvr-nvmbr-api-appservice.azurewebsites.net";
 
 interface WeatherForecast {
@@ -45,6 +47,10 @@ export class ProjectComponent implements OnInit {
         // console.log("Weather: ", this.weatherData);
         console.log("Response: ", res);
       })
+  }
+
+  handleProjectEvent(project: Project) {
+    console.log("Project: ", project);
   }
 
 }
