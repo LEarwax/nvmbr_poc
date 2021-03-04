@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ProjectFormComponent implements OnInit {
 
-@Output() projectEvent = new EventEmitter<Project>();
+@Output() submitFormEvent = new EventEmitter<Project>();
 
   // TODO: Fix these problems papered over with @ts-ignore i.e. the proper way to initialize
   
@@ -44,7 +44,7 @@ export class ProjectFormComponent implements OnInit {
   budget: number = 0;
   actual: number = 0;
   alertPercentage: number = 0;
-  description: string = "";
+  notes: string = "";
   
   
   // @ts-ignore
@@ -86,22 +86,35 @@ export class ProjectFormComponent implements OnInit {
   }
 
   handleSubmit() {
+
+    //TODO: look at the p-calendar docs to see if this can be formatted at the component level
+    let formattedStartMonth = `0${this.selectedStartDate.getMonth() + 1}`.slice(-2); 
+    let formattedStartDay = `0${this.selectedStartDate.getDate()}`;
+    let formattedStartDate = `${this.selectedStartDate.getFullYear()}-${formattedStartMonth}-${formattedStartDay}`
+
+    let formattedEndMonth = `0${this.selectedEndDate.getMonth() + 1}`.slice(-2); 
+    let formattedEndDay = `0${this.selectedEndDate.getDate()}`;
+    let formattedEndDate = `${this.selectedEndDate.getFullYear()}-${formattedEndMonth}-${formattedEndDay}`
+
+    console.log("Formatted Start Date: ", formattedStartDate);
+
+    //TODO: Form should do error checks 
     let project: Project = {
-        client: this.selectedClient,
+        billingClient: this.selectedClient,
         name: this.name,
         projectManager: this.selectedProjectManager,
-        status: this.selectedStatusOption,
+        //TODO: make an option, not a boolean
+        status: "active",
         billable: this.selectedBillableOption,
-        startDate: this.selectedStartDate,
-        endDate: this.selectedEndDate,
         budget: this.budget,
-        actual: this.actual,
-        alertPercentage: this.alertPercentage
+        budgetAlertPercentage: this.alertPercentage,
+        actualAmount: this.actual,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
+        notes: this.notes
     };
-    
-    console.log("Submitted Project: ", project);
 
-    this.projectEvent.emit(project);
+    this.submitFormEvent.emit(project);
   }
 
 }

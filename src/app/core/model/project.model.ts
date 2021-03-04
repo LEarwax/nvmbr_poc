@@ -1,12 +1,13 @@
 export interface Project {
-    client: string;
+    billingClient: string;
     name: string;
     projectManager: string;
-    status: boolean;
+    status: string;
     billable: boolean;
-    startDate: Date;
-    endDate: Date;
     budget: number;
-    actual: number;
-    alertPercentage: number;
+    budgetAlertPercentage: number;
+    actualAmount: number;
+    startDate: string;
+    endDate: string;
+    notes: string;
 }

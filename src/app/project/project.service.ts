@@ -24,6 +24,10 @@ export class ProjectService {
     }
 
     addProject(project: Project) {
-        return this._http.post(`${this._baseURL}/project`, project,(this.headers));
+        return this._http.post(`${this._baseURL}/api/projects`, project, (this.headers));
+    }
+
+    getProject(id: string) {
+        return this._http.get(`${this._baseURL}/api/projects/${id}`, (this.headers));
     }
 }
