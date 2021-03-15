@@ -87,7 +87,7 @@ export class ProjectFormComponent implements OnInit {
 
   handleSubmit() {
 
-    //TODO: look at the p-calendar docs to see if this can be formatted at the component level
+    //TODO: look at the p-calendar docs to see if this can be formatted
     let formattedStartMonth = `0${this.selectedStartDate.getMonth() + 1}`.slice(-2); 
     let formattedStartDay = `0${this.selectedStartDate.getDate()}`;
     let formattedStartDate = `${this.selectedStartDate.getFullYear()}-${formattedStartMonth}-${formattedStartDay}`

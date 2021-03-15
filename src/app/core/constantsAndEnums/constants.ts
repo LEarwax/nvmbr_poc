@@ -1,3 +1,3 @@
 export class AppConstants {
-    public static get baseURL(): string { return "https://ctlvr-nvmbr-api-appservice.azurewebsites.net" }
+    public static get baseURL(): string { return "https://nvmbrcoreapi.azurewebsites.net" }
 }

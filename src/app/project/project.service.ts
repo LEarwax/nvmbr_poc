@@ -19,15 +19,20 @@ export class ProjectService {
         this._baseURL = AppConstants.baseURL;
     }
     
-    getTestData() {
-        return this._http.get(`${this._baseURL}/api/noauthtest/test`, (this.headers));
+    getProject(id: string) {
+        return this._http.get(`${this._baseURL}/api/projects/${id}`, (this.headers));
+    }
+    
+    getProjects() {
+        return this._http.get<Project[]>(`${this._baseURL}/api/projects`, (this.headers));
     }
 
     addProject(project: Project) {
         return this._http.post(`${this._baseURL}/api/projects`, project, (this.headers));
     }
 
-    getProject(id: string) {
-        return this._http.get(`${this._baseURL}/api/projects/${id}`, (this.headers));
+    updateProject(project: Project) {
+        return this._http.put(`${this._baseURL}/api/projects/${project.projectID}`, project, (this.headers));
     }
+
 }

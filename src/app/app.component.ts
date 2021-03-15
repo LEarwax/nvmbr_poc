@@ -47,7 +47,9 @@ export class AppComponent implements OnInit, OnDestroy {
               label: 'Import projects'
             },
             {
-              label: 'Recently view projects'
+              label: 'Recently view projects',
+              routerLink: ['/project/list'],
+              routerLinkActiveOptions: { exact: true}
             }
           ]
       },

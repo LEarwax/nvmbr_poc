@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
@@ -15,11 +15,20 @@ export class ProjectComponent implements OnInit {
 
   constructor(
     private http: HttpClient, 
-    private router: ActivatedRoute,
+    public router: ActivatedRoute,
     private projectService: ProjectService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // this.projectService
+    //     .getProjects()
+    //     .subscribe(projects => {
+            
+    // });
+    
+  }
+
+  
 
   async handleProjectEvent(project: Project) {
     try {
