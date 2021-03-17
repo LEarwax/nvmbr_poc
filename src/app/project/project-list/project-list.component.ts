@@ -21,6 +21,7 @@ export class ProjectListComponent implements OnInit {
       let projectsJSON = data;
       //@ts-ignore 
       this.projects = projectsJSON; 
+      console.log("Projects: ", this.projects)
     });
   };
 
@@ -35,7 +36,6 @@ export class ProjectListComponent implements OnInit {
 
     //@ts-ignore
     delete this.clonedProjects[project.projectID];
-    console.log("Project saved: ", project);
     this.projectService.updateProject(project).subscribe(res => {
       console.log("Updated Project: ", res);
     });

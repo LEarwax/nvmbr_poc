@@ -6,6 +6,10 @@
                 <p-columnFilter type="text" field="billingClient" display="menu"></p-columnFilter>
             </th>
             <th>
+                Name
+                <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+            </th>
+            <th>
                 Project Manager
                 <p-columnFilter type="text" field="projectManager" display="menu"></p-columnFilter>
             </th>
@@ -49,6 +53,16 @@
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{project.billingClient}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input style="width: 100%;" pInputText type="text" [(ngModel)]="project.name">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{project.name}}
                     </ng-template>
                 </p-cellEditor>
             </td>

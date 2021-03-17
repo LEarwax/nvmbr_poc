@@ -1,1 +1,126 @@
-<p>client-form works!</p>
+<section>
+    <form #clientForm="ngForm" (ngSubmit)="handleSubmit()">
+        <p-fieldset legend="Details">
+            <div class="p-grid">
+                <div class="p-col-6">
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="name">Name: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="name" 
+                                   [(ngModel)]="client.name" 
+                                   type="text" 
+                                   name="name"
+                                   pInputText
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label for="dateCreated">Date Created: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <p-calendar name="dateCreated" 
+                                        inputId="date-created" 
+                                        [(ngModel)]="client.dateCreated">
+                            </p-calendar>
+                        </div>
+                    </div>
+                    
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label for="status">Status</label>
+                        </div>
+                        <div class="p-col-9">
+                            <div *ngFor="let status of statuses" class="p-field-checkbox">
+                                <p-radioButton [inputId]="status.key" 
+                                                name="status" 
+                                                [value]="status.name" 
+                                                [(ngModel)]="client.status" 
+                                                required>
+                                </p-radioButton>
+                                <label [for]="status.key">{{status.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="p-col-6">
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="email">Email: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="email" 
+                                   [(ngModel)]="client.email" 
+                                   type="text" 
+                                   name="email"
+                                   pInputText
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="website">Website: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="website" 
+                                   [(ngModel)]="client.website" 
+                                   type="text" 
+                                   name="website"
+                                   pInputText
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="phone">Phone: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="phone" 
+                                   [(ngModel)]="client.phone" 
+                                   type="text" 
+                                   name="phone"
+                                   pInputText
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-3">
+                            <label id="fax">Fax: </label>
+                        </div>
+                        <div class="p-col-9">
+                            <input id="fax" 
+                                   [(ngModel)]="client.fax" 
+                                   type="text" 
+                                   name="fax"
+                                   pInputText
+                                   required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </p-fieldset>
+        
+        <p-fieldset legend="Description: ">
+            <textarea rows="5" 
+                      cols="70" 
+                      [(ngModel)]="client.description" 
+                      name="description" 
+                      pInputTextarea>
+            </textarea>
+        </p-fieldset>
+
+        <p>
+            <p-button type="submit" [disabled]="!clientForm.valid" label="Submit"></p-button>
+        </p>
+    </form>
+</section>

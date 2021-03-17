@@ -16,7 +16,14 @@ const routes: Routes = [
   {
     path: 'client',
     component: ClientComponent,
-    canActivate: [MsalGuard]
+    canActivate: [MsalGuard],
+    children: [
+      {
+        path: 'form',
+        component: ClientFormComponent,
+        canActivate: [MsalGuard]
+      }
+    ]
   },
   {
     path: 'project',
@@ -25,11 +32,6 @@ const routes: Routes = [
     children: [
       {
         path: 'form',
-        component: ProjectFormComponent,
-        canActivate: [MsalGuard]
-      },
-      {
-        path: 'edit',
         component: ProjectFormComponent,
         canActivate: [MsalGuard]
       },

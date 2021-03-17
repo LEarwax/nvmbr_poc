@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 
 import { Project } from '../core/model/project.model';
 import { AppConstants } from '../core/constantsAndEnums/constants';
@@ -15,7 +14,7 @@ export class ProjectService {
     private _baseURL: string;
 
     constructor(private _http:HttpClient) {
-        this.headers = new HttpHeaders().set('content-type', 'applicatoin/json');
+        this.headers = new HttpHeaders().set('content-type', 'application/json');
         this._baseURL = AppConstants.baseURL;
     }
     

@@ -18,9 +18,9 @@ const coreAPIEndpoint = "https://ctlvr-nvmbr-api-appservice.azurewebsites.net";
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
-  testData: any;
   
-  clientModel: Client = new Client("", "", "", "", "", CLIENT_STATUS.inactive);
+  
+  
 
   // clients: Client[] = [];
   clients: string[] = ["client1", "client2", "client3", "client4"];
@@ -33,17 +33,9 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.getTestData();
+    
   }
-
-  getTestData() {
-    this.http.get(`${coreAPIEndpoint}/api/noauthtest/test`).subscribe(
-      (res) => {
-        console.log("Response: ", res)
-        this.testData = res;
-      }
-    )
-  }
+  
   onSubmit(clientForm: NgForm) {
     console.log(clientForm.value);
     // this.clientModel = clientForm.value;
@@ -70,5 +62,3 @@ export class ClientComponent implements OnInit {
   }
 
 }
-
-// ClientBindingModel { "name": "", "address": "", "contactname": ""} 

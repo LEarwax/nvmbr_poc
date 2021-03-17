@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from '../../core/model/project.model';
 import { HttpClient } from '@angular/common/http';
 import { Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { EventManagerService } from '../../core/services/eventManager.service';
+
 
 @Component({
   selector: 'project-form',
@@ -11,7 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ProjectFormComponent implements OnInit {
 
-@Output() submitFormEvent = new EventEmitter<Project>();
+  @Output() submitFormEvent = new EventEmitter<Project>();
 
   // TODO: Fix these problems papered over with @ts-ignore i.e. the proper way to initialize
   
@@ -21,6 +22,8 @@ export class ProjectFormComponent implements OnInit {
   // @ts-ignore
   // TODO: Get two-way binding to work on dropdown select
   selectedClient: string;
+
+  public projectBindingModel?: Project
 
   // Name
   name: string = "";
@@ -49,7 +52,7 @@ export class ProjectFormComponent implements OnInit {
   
   // @ts-ignore
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private eventManager: EventManagerService) { }
 
   ngOnInit(): void {
       
@@ -89,12 +92,13 @@ export class ProjectFormComponent implements OnInit {
 
     //TODO: look at the p-calendar docs to see if this can be formatted
     let formattedStartMonth = `0${this.selectedStartDate.getMonth() + 1}`.slice(-2); 
-    let formattedStartDay = `0${this.selectedStartDate.getDate()}`;
+    let formattedStartDay = `0${this.selectedStartDate.getDate()}`.slice(-2);
     let formattedStartDate = `${this.selectedStartDate.getFullYear()}-${formattedStartMonth}-${formattedStartDay}`
 
     let formattedEndMonth = `0${this.selectedEndDate.getMonth() + 1}`.slice(-2); 
-    let formattedEndDay = `0${this.selectedEndDate.getDate()}`;
+    let formattedEndDay = `0${this.selectedEndDate.getDate()}`.slice(-2);
     let formattedEndDate = `${this.selectedEndDate.getFullYear()}-${formattedEndMonth}-${formattedEndDay}`
+
 
     console.log("Formatted Start Date: ", formattedStartDate);
 
@@ -114,6 +118,10 @@ export class ProjectFormComponent implements OnInit {
         notes: this.notes
     };
 
+    console.log("Project in HandleSubmit: ", project);
+
+    // this.projectBindingModel = new Project(project);
+    this.eventManager.emitChange(project);
     this.submitFormEvent.emit(project);
   }
 

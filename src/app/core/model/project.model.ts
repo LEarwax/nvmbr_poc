@@ -29,7 +29,7 @@ export class Project {
 
 
     //TODO: Fix this so we don't need casting
-    constructor(project: IProject) {
+    constructor(project: Project) {
         this.projectID = project.projectID,
         this.billingClient = project.billingClient,
         this.name = project.name,
