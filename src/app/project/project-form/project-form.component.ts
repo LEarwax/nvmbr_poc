@@ -110,9 +110,9 @@ export class ProjectFormComponent implements OnInit {
         //TODO: make an option, not a boolean
         status: "active",
         billable: this.selectedBillableOption,
-        budget: this.budget,
-        budgetAlertPercentage: this.alertPercentage,
-        actualAmount: this.actual,
+        budget: Number(this.budget),
+        budgetAlertPercentage: Number(this.alertPercentage),
+        actualAmount: Number(this.actual),
         startDate: formattedStartDate,
         endDate: formattedEndDate,
         notes: this.notes

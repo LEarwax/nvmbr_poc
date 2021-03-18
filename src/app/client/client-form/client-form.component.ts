@@ -3,8 +3,6 @@ import { Output, EventEmitter } from '@angular/core';
 
 import { Client, IClient } from '../../core/model/client.model';
 
-
-
 @Component({
   selector: 'client-form',
   templateUrl: './client-form.component.html',
@@ -20,7 +18,7 @@ export class ClientFormComponent implements OnInit {
 
   statuses: any[] = [{name: 'Active', key: 0}, {name: 'Inactive', key: 1}];
 
-  client: IClient = new Client("", "", "", "", "", "", "", "", "");
+  client: Client = new Client("", "", "", "", "", "", "", "");
 
   constructor() { }
 
@@ -34,16 +32,15 @@ export class ClientFormComponent implements OnInit {
     //@ts-ignore
     let formattedDateCreatedMonth = `0${this.client.dateCreated.getMonth() + 1}`.slice(-2); 
     //@ts-ignore
-    let formattedDateCreatedDay = `0${this.client.dateCreated.getDate()}`;
+    let formattedDateCreatedDay = `0${this.client.dateCreated.getDate()}`.slice(-2);
     //@ts-ignore
     let formattedDateCreated = `${this.client.dateCreated.getFullYear()}-${formattedDateCreatedMonth}-${formattedDateCreatedDay}`
 
     let newClient = new Client(
-      "",
       //TODO: Fix this error
       //@ts-ignore
       this.client.name,
-      formattedDateCreatedDay,
+      formattedDateCreated,
       this.client.status,
       this.client.email,
       this.client.website,

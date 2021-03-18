@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-
+import { ClientService } from './client.service';
 
 import { Client } from '../core/model/client.model';
 
@@ -9,8 +9,6 @@ const CLIENT_STATUS = {
   active: "active",
   inactive: "inactive"
 }
-
-const coreAPIEndpoint = "https://ctlvr-nvmbr-api-appservice.azurewebsites.net";
 
 @Component({
   selector: 'app-client',
@@ -28,7 +26,7 @@ export class ClientComponent implements OnInit {
   list: String[];
   selected: string = "";
 
-  constructor(private http: HttpClient) { 
+  constructor(private clientService: ClientService) { 
     this.list = ["1", "2", "3"];
   }
 
@@ -36,29 +34,15 @@ export class ClientComponent implements OnInit {
     
   }
   
-  onSubmit(clientForm: NgForm) {
-    console.log(clientForm.value);
-    // this.clientModel = clientForm.value;
-
-    // let client = new Client(
-    //   this.clientModel.name,
-    //   this.clientModel.address,
-    //   this.clientModel.contactName,
-    //   this.clientModel.notes,
-    //   this.clientModel.history,
-    //   this.clientModel.status
-    // );
-
-    // this.clients.push(client);
-
-    // try {
-    //   this.http.post(`${coreAPIEndpoint}/api/clients`, client)
-    //       .subscribe(result => {
-    //         console.log("Results: ", result);
-    //       });
-    // } catch (error) {
+  handleSubmitForm(event: Client) {
+    let client = event;
+    try {
+      this.clientService.addClient(client).subscribe(res => {
+        console.log("Add Client: ", res);
+      });
+    } catch (error) {
       
-    // }
+    }
   }
 
 }

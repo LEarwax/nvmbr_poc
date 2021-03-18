@@ -11,7 +11,6 @@ export interface IClient {
 }
 
 export class Client {
-    clientID?: string;
     name?: string;
     dateCreated?: string;
     status?: string;
@@ -22,7 +21,6 @@ export class Client {
     description?: string;
 
     constructor(
-        clientID: string, 
         name: string, 
         dateCreated: string,
         status: string, 
@@ -31,7 +29,6 @@ export class Client {
         phone: string,
         fax: string,
         description: string) { 
-        this.clientID = clientID,
         this.name = name,
         this.dateCreated = dateCreated,
         this.status = status,
