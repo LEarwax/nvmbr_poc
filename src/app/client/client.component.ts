@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { ClientService } from './client.service';
+import { Location } from '@angular/common';
+import { ROUTES } from '../core/constantsAndEnums/constants';
 
 import { Client } from '../core/model/client.model';
 
@@ -17,8 +19,8 @@ const CLIENT_STATUS = {
 })
 export class ClientComponent implements OnInit {
   
-  
-  
+  currentHash: string;
+  routes: Object;
 
   // clients: Client[] = [];
   clients: string[] = ["client1", "client2", "client3", "client4"];
@@ -26,13 +28,23 @@ export class ClientComponent implements OnInit {
   list: String[];
   selected: string = "";
 
-  constructor(private clientService: ClientService) { 
+  constructor(private clientService: ClientService, location: Location) { 
     this.list = ["1", "2", "3"];
+    this.currentHash = "";
+    this.routes = ROUTES;
+
+    
   }
 
   ngOnInit(): void { 
     
   }
+
+  ngAfterViewInit(): void {
+    this.currentHash = location.hash;
+  }
+
+  
   
   handleSubmitForm(event: Client) {
     let client = event;
