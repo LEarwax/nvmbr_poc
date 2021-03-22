@@ -34,6 +34,7 @@ import {MegaMenuModule} from 'primeng/megamenu';
 import { DropdownModule } from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ClientListComponent } from './client/client-list/client-list.component';
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
@@ -73,7 +74,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     ProjectComponent,
     ClientFormComponent,
     ProjectFormComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ClientListComponent
   ],
   imports: [
     BrowserModule,

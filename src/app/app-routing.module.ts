@@ -7,6 +7,7 @@ import { ClientFormComponent } from './client/client-form/client-form.component'
 import { ProjectFormComponent } from './project/project-form/project-form.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ClientListComponent } from './client/client-list/client-list.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
       {
         path: 'form',
         component: ClientFormComponent,
+        canActivate: [MsalGuard]
+      },
+      {
+        path: 'list',
+        component: ClientListComponent,
         canActivate: [MsalGuard]
       }
     ]

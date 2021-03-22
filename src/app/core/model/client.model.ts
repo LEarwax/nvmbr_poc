@@ -1,26 +1,28 @@
-export interface IClient {
-    clientID?: string;
-    name?: string;
-    dateCreated?: string;
-    status?: string;
-    email?: string;
-    website?: string; 
-    phone?: string;
-    fax?: string;
-    description?: string;
-}
+// export interface IClient {
+//     clientID?: string;
+//     name?: string;
+//     dateCreated?: string;
+//     status?: string;
+//     email?: string;
+//     website?: string; 
+//     phone?: string;
+//     fax?: string;
+//     description?: string;
+// }
 
 export class Client {
-    name?: string;
-    dateCreated?: string;
-    status?: string;
-    email?: string;
-    website?: string;
-    phone?: string;
-    fax?: string;
-    description?: string;
+    clientID: string;
+    name: string;
+    dateCreated: string;
+    status: string;
+    email: string;
+    website: string;
+    phone: string;
+    fax: string;
+    description: string;
 
     constructor(
+        clientID: string,
         name: string, 
         dateCreated: string,
         status: string, 
@@ -29,6 +31,7 @@ export class Client {
         phone: string,
         fax: string,
         description: string) { 
+        this.clientID = clientID,
         this.name = name,
         this.dateCreated = dateCreated,
         this.status = status,
@@ -39,3 +42,4 @@ export class Client {
         this.description = description
     }
 }
+

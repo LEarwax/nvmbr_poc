@@ -1,0 +1,105 @@
+<p-table [value]="clients" dataKey="name" editMode="row">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>
+                Name
+                <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+            </th>
+            <th>
+                Date Created
+                <p-columnFilter type="text" field="dateCreated" display="menu"></p-columnFilter>
+            </th>
+            <th>
+                Status
+                <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+            </th>
+            <th>
+                Email
+                <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
+            </th>
+            <th>
+                Website
+                <p-columnFilter type="text" field="website" display="menu"></p-columnFilter>
+            </th>
+            <th>
+                Phone
+                <p-columnFilter type="text" field="phone" display="menu"></p-columnFilter>
+            </th>
+            <th>
+                Fax
+                <p-columnFilter type="text" field="fax" display="menu"></p-columnFilter>
+            </th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="client">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input style="width: 100%;" pInputText type="text" [(ngModel)]="client.name">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{client.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>{{client.dateCreated | date: 'shortDate' }}</td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input style="width: 100%;" pInputText type="text" [(ngModel)]="client.status">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{client.status}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input style="width: 100%;" pInputText type="text" [(ngModel)]="client.email">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{client.email}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input style="width: 100%;" pInputText type="text" [(ngModel)]="client.website">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{client.website}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input style="width: 100%;" pInputText type="text" [(ngModel)]="client.phone">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{client.phone}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input style="width: 100%;" pInputText type="text" [(ngModel)]="client.fax">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{client.fax}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(client)" class="p-button-rounded p-button-text"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(client)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(client, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
