@@ -36,6 +36,11 @@ export class ProjectListComponent implements OnInit {
   }
 
   onRowEditSave(project: Project) {
+    //TODO: Fix this number issue
+    project.budget = Number(project.budget);
+    project.budgetAlertPercentage = Number(project.budgetAlertPercentage);
+    project.actualAmount = Number(project.actualAmount);
+
     delete this.clonedProjects[project.projectID];
     this.projectService
         .updateProject(project)
