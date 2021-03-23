@@ -1,5 +1,5 @@
     <!-- TODO: Use ngForm properly with (ngSubmit) -->
-    <form #project="ngForm">
+    <form #projectForm="ngForm">
         <p-fieldset legend="Details">
             
             <div class="p-grid">
@@ -16,7 +16,7 @@
                                         [filter]="true" 
                                         filterBy="label" 
                                         name="client"
-                                        [(ngModel)]="selectedClient"
+                                        [(ngModel)]="project.billingClient"
                                         placeholder="Select a Client">
                             </p-dropdown>
                         </div>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="p-col-9">
                             <input id="name" 
-                                   [(ngModel)]="name" 
+                                   [(ngModel)]="project.name" 
                                    type="text" 
                                    name="name"
                                    pInputText/>
@@ -44,7 +44,7 @@
                                         [filter]="true" 
                                         filterBy="label" 
                                         name="projectManager"
-                                        [(ngModel)]="selectedProjectManager"
+                                        [(ngModel)]="project.projectManager"
                                         placeholder="Select a Project Manager">
                             </p-dropdown>
                         </div>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="p-col-9">
                             <p-selectButton [options]="binaryOptions" 
-                                            [(ngModel)]="selectedStatusOption" 
+                                            [(ngModel)]="project.status" 
                                             name="status"
                                             optionLabel="label" 
                                             optionValue="value"
@@ -72,7 +72,7 @@
                         <div class="p-col-9">
                             <p-selectButton id="billable" 
                                             [options]="binaryOptions" 
-                                            [(ngModel)]="selectedBillableOption" 
+                                            [(ngModel)]="project.billable" 
                                             name="billable"
                                             optionLabel="label" 
                                             optionValue="value">
@@ -91,7 +91,10 @@
                             <label for="start-date">Start Date: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-calendar name="startDate" inputId="start-date" [(ngModel)]="selectedStartDate"></p-calendar>
+                            <p-calendar name="startDate" 
+                                        inputId="start-date" 
+                                        [(ngModel)]="startDate">
+                            </p-calendar>
                         </div>
                     </div>
 
@@ -100,7 +103,10 @@
                             <label for="end-date">End Date: </label>
                         </div>
                         <div class="p-col-9">
-                            <p-calendar name="endDate" inputId="end-date" [(ngModel)]="selectedEndDate"></p-calendar>
+                            <p-calendar name="endDate" 
+                                        inputId="end-date" 
+                                        [(ngModel)]="endDate">
+                            </p-calendar>
                         </div>
                     </div>
 
@@ -109,7 +115,11 @@
                             <label for="budget">Budget: </label>
                         </div>
                         <div class="p-col-9">
-                            <input id="budget" type="text" [(ngModel)]="budget" name="budget" pInputText />
+                            <input id="budget" 
+                                   type="text" 
+                                   [(ngModel)]="project.budget" 
+                                   name="budget" 
+                                   pInputText/>
                         </div>
                     </div>
 
@@ -118,7 +128,11 @@
                             <label for="actual">Actual: </label>
                         </div>
                         <div class="p-col-9">
-                            <input id="actual" type="text" [(ngModel)]="actual" name="actual" pInputText />
+                            <input id="actual" 
+                                   type="text" 
+                                   [(ngModel)]="project.actualAmount" 
+                                   name="actual" 
+                                   pInputText/>
                         </div>
                     </div>
                     
@@ -127,7 +141,11 @@
                             <label for="alert-when">Alert When: </label>
                         </div>
                         <div class="p-col-9">
-                            <input id="alert-when" type="text" [(ngModel)]="alertPercentage" name="alert" pInputText/>
+                            <input id="alert-when" 
+                                   type="text" 
+                                   [(ngModel)]="project.budgetAlertPercentage" 
+                                   name="alert" 
+                                   pInputText/>
                             <label for="alert-when"> % of budget ($0.00) is reached.</label>
                         </div>
                     </div>
@@ -141,7 +159,12 @@
         <div class="p-grid">
             <div class="p-col-6">
                 <p-fieldset legend="Description: ">
-                    <textarea rows="5" cols="70" [(ngModel)]="notes" name="description" pInputTextarea></textarea>
+                    <textarea rows="5" 
+                              cols="70" 
+                              [(ngModel)]="project.notes" 
+                              name="description" 
+                              pInputTextarea>
+                    </textarea>
                 </p-fieldset>
             </div>
             <div class="p-col-2">
@@ -153,39 +176,4 @@
         </div>  
     </form>
 
-        <div>
-            Selected Client: {{ selectedClient }}
-        </div>
-        <div>
-            Name: {{ name }}
-        </div>
-        <div>
-            Selected Project: {{ selectedProjectManager }}
-        </div>
-        <div>
-            Status: {{ selectedStatusOption }}
-        </div>
-        <div>
-            Billable: {{ selectedBillableOption }}
-        </div>
-        <div>
-            Start Date: {{ selectedStartDate }}
-        </div>
-        <div>
-            End Date: {{ selectedEndDate }}
-        </div>
-        <div>
-            Budget: {{ budget }}
-        </div>
-        <div>
-            Actual: {{ actual }}
-        </div>
-        <div>
-            Alert %: {{ alertPercentage }}
-        </div>
-        <div>
-            Description: {{ notes }}
-        </div>
-    
-
-
+    Project Name: {{ project.name }}

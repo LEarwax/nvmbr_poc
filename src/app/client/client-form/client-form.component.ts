@@ -10,12 +10,6 @@ import { DataService } from '../../core/services/data.service';
   styleUrls: ['./client-form.component.css']
 })
 export class ClientFormComponent implements OnInit {
-
-  // @Output() submitFormEvent = new EventEmitter<Client>();
-
-  message?: string;
-
-  
   
   //TODO: find a better solution for dates
   dateCreated?: Date;
@@ -27,9 +21,7 @@ export class ClientFormComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit(): void {
-    this.dataService.changeData("Hello from Client From");
-  }
+  ngOnInit(): void { }
 
   handleSubmit() {
     //@ts-ignore

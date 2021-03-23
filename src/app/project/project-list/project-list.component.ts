@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 
-import { Project, IProject } from '../../core/model/project.model';
+import { Project } from '../../core/model/project.model';
 import { ProjectService } from '../../project/project.service';
 
 @Component({
@@ -17,34 +17,36 @@ export class ProjectListComponent implements OnInit {
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void { 
-    this.projectService.getProjects().subscribe(data => {
-      let projectsJSON = data;
-      //@ts-ignore 
-      this.projects = projectsJSON; 
-      console.log("Projects: ", this.projects)
+    this.projectService
+        .getProjects()
+        .subscribe(data => {
+          let projectsJSON = data;
+          //@ts-ignore 
+          this.projects = projectsJSON; 
+          console.log("Projects: ", this.projects)
     });
   };
 
-  onRowEditInit(projectBindingModel: IProject) {
-    let project = new Project(projectBindingModel);
-    //@ts-ignore
+  ngOnChanges(changes: SimpleChanges): void {
+    
+  }
+
+  onRowEditInit(project: Project) {
     this.clonedProjects[project.projectID] = {...project};
   }
 
-  onRowEditSave(projectBindingModel: IProject) {
-    let project = new Project(projectBindingModel);
-
-    //@ts-ignore
+  onRowEditSave(project: Project) {
     delete this.clonedProjects[project.projectID];
-    this.projectService.updateProject(project).subscribe(res => {
-      console.log("Updated Project: ", res);
+    this.projectService
+        .updateProject(project)
+        .subscribe(res => {
+          console.log("Updated Project: ", res);
     });
   }
 
   onRowEditCancel(project: Project, index: number) {
     //@ts-ignore
     this.projects[index] = this.clonedProjects[project.projectID];
-    //@ts-ignore
     delete this.clonedProjects[project.projectID];
   }
   
